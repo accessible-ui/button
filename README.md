@@ -12,11 +12,11 @@
   <a aria-label="Types" href="https://www.npmjs.com/package/@accessible/button">
     <img alt="Types" src="https://img.shields.io/npm/types/@accessible/button?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Code coverage report" href="https://codecov.io/gh/accessible-ui/accessible">
-    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/accessible-ui/accessible?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Code coverage report" href="https://codecov.io/gh/accessible-ui/button">
+    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/accessible-ui/button?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Build status" href="https://travis-ci.org/accessible-ui/accessible">
-    <img alt="Build status" src="https://img.shields.io/travis/accessible-ui/accessible?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Build status" href="https://travis-ci.org/accessible-ui/button">
+    <img alt="Build status" src="https://img.shields.io/travis/accessible-ui/button?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@accessible/button">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@accessible/button?style=for-the-badge&labelColor=24292e">
@@ -29,7 +29,7 @@
 <pre align="center">npm i @accessible/button</pre>
 <hr>
 
-An accessible button component for React that provides interop between real <button> elements and fake ones, e.g. <div role='button'>
+An accessible button component for React that provides interop between real `<button>` elements and fake ones, e.g. `<div role='button'>`
 
 ## Quick Start
 

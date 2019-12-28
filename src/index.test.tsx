@@ -11,9 +11,18 @@ describe('<Button>', () => {
         <button onClick={cb} data-testid="btn" />
       </Button>
     )
-
+    // mousedown
+    fireEvent.click(getByTestId('btn'))
+    expect(cb).toBeCalledTimes(0)
+    fireEvent.mouseDown(getByTestId('btn'))
     fireEvent.click(getByTestId('btn'))
     expect(cb).toBeCalledTimes(1)
+    // touchstart
+    fireEvent.click(getByTestId('btn'))
+    expect(cb).toBeCalledTimes(1) // should reset between clicks
+    fireEvent.touchStart(getByTestId('btn'))
+    fireEvent.click(getByTestId('btn'))
+    expect(cb).toBeCalledTimes(2)
   })
 
   it(`should fire click event once for buttons on space`, () => {
@@ -48,6 +57,9 @@ describe('<Button>', () => {
       </Button>
     )
 
+    fireEvent.click(getByTestId('btn'))
+    expect(cb).toBeCalledTimes(0)
+    fireEvent.mouseDown(getByTestId('btn'))
     fireEvent.click(getByTestId('btn'))
     expect(cb).toBeCalledTimes(1)
   })

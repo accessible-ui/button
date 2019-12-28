@@ -1,4 +1,4 @@
-import React, {cloneElement, useRef, useCallback} from 'react'
+import React, {cloneElement, useRef, useMemo} from 'react'
 import {useKeycodes} from '@accessible/use-keycode'
 import useMergedRef from '@react-hook/merged-ref'
 
@@ -11,13 +11,6 @@ const Button: React.FC<ButtonProps> = ({children}) => {
   // Tracking the pressed value ensures that the onClick event won't fire
   // twice when the child component is an actual <button> element.
   const pressed = useRef<boolean>(false)
-  const handleInterop = useCallback(
-    (e: KeyboardEvent) => {
-      props.onClick?.(e)
-      pressed.current = true
-    },
-    [props.onClick]
-  )
 
   return cloneElement(children, {
     role: props.hasOwnProperty('role') ? props.role : 'button',
@@ -35,12 +28,21 @@ const Button: React.FC<ButtonProps> = ({children}) => {
     ref: useMergedRef(
       // @ts-ignore
       children.ref,
-      useKeycodes({
-        // enter
-        13: handleInterop,
-        // space bar
-        32: handleInterop,
-      })
+      useKeycodes(
+        useMemo(() => {
+          const handleInterop = (e: KeyboardEvent) => {
+            props.onClick?.(e)
+            pressed.current = true
+          }
+
+          return {
+            // enter
+            13: handleInterop,
+            // space bar
+            32: handleInterop,
+          }
+        }, [props?.onClick])
+      )
     ),
   })
 }

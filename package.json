@@ -84,7 +84,10 @@
     "ts-jest": "latest",
     "typescript": "latest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@accessible/use-keycode": "^2.0.0",
+    "@react-hook/merged-ref": "^1.0.8"
+  },
   "peerDependencies": {
     "prop-types": ">=15.6",
     "react": ">=16.8",

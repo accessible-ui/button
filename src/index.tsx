@@ -1,4 +1,4 @@
-import React, {cloneElement, useRef, useMemo} from 'react'
+import React, {cloneElement, useRef} from 'react'
 import {useKeycodes} from '@accessible/use-keycode'
 import useMergedRef from '@react-hook/merged-ref'
 
@@ -13,8 +13,8 @@ const Button: React.FC<ButtonProps> = ({children}) => {
   // Tracking the pressed value ensures that the onClick event won't fire
   // twice when the child component is an actual <button> element.
   const clicked = useRef<boolean>(false)
-
   const onClick = props.onClick || noop
+
   return cloneElement(children, {
     role: props.hasOwnProperty('role') ? props.role : 'button',
     tabIndex: props.hasOwnProperty('tabIndex') ? props.tabIndex : 0,
@@ -38,15 +38,13 @@ const Button: React.FC<ButtonProps> = ({children}) => {
       // @ts-ignore
       children.ref,
       useKeycodes(
-        useMemo(
-          () => ({
-            // enter
-            13: onClick,
-            // space bar
-            32: onClick,
-          }),
-          [onClick]
-        )
+        {
+          // enter
+          13: onClick,
+          // space bar
+          32: onClick,
+        },
+        [onClick]
       )
     ),
   })

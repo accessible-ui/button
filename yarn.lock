@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@accessible/use-keycode@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-2.0.0.tgz#9fbaf02a9b345ffd86a62f231c30789c3860e237"
-  integrity sha512-pvcrkiMlRaCmh1luRlfSxdDKjElQiPNvaBmY1cibRopgBYXN94cqJXAequOn3cFWxsbhLVxfbdq+x/ocp5+q3w==
+"@accessible/use-keycode@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-3.0.1.tgz#0325eb1dd548fc0201de70c3a8fd2c748f826c51"
+  integrity sha512-JKrEj+reEP++2pszXUI8O3KoEQdUQKFiTNi7NbvdUjasEJVK+8tLGNo0De7URc3wzHgYdaMSxhml9tMGakx2sQ==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 

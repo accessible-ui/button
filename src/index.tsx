@@ -37,15 +37,12 @@ const Button: React.FC<ButtonProps> = ({children}) => {
     ref: useMergedRef(
       // @ts-ignore
       children.ref,
-      useKeycodes(
-        {
-          // enter
-          13: onClick,
-          // space bar
-          32: onClick,
-        },
-        [onClick]
-      )
+      useKeycodes({
+        // enter
+        13: onClick,
+        // space bar
+        32: onClick,
+      })
     ),
   })
 }

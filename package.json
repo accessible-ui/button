@@ -1,6 +1,6 @@
 {
   "name": "@accessible/button",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://github.com/accessible-ui/button#readme",
   "repository": "github:accessible-ui/button",
   "bugs": "https://github.com/accessible-ui/button/issues",
@@ -85,7 +85,7 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@accessible/use-keycode": "^3.0.1",
+    "@accessible/use-keycode": "^4.0.0",
     "@react-hook/merged-ref": "^1.0.8"
   },
   "peerDependencies": {

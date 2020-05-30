@@ -1,9 +1,9 @@
 {
   "name": "@accessible/button",
-  "version": "1.1.0",
-  "homepage": "https://github.com/accessible-ui/accessible#readme",
-  "repository": "github:accessible-ui/accessible",
-  "bugs": "https://github.com/accessible-ui/accessible/issues",
+  "version": "1.1.1",
+  "homepage": "https://github.com/accessible-ui/button#readme",
+  "repository": "github:accessible-ui/button",
+  "bugs": "https://github.com/accessible-ui/button/issues",
   "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredLunde.com)",
   "license": "MIT",
   "description": "An accessible button component for React that provides interop between real `<button>` elements and fake ones, e.g. `<div role='button'>`",

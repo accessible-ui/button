@@ -27,7 +27,7 @@
   ],
   "main": "dist/main/index.js",
   "module": "dist/module/index.js",
-  "unpkg": "dist/umd/button.js",
+  "unpkg": "dist/umd/accessible-button.js",
   "source": "src/index.tsx",
   "types": "types/index.d.ts",
   "exports": {
@@ -35,7 +35,7 @@
       "browser": "./dist/module/index.js",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/main/index.js",
-      "umd": "./dist/umd/button.js",
+      "umd": "./dist/umd/accessible-button.js",
       "source": "./src/index.tsx",
       "types": "./types/index.d.ts",
       "default": "./dist/main/index.js"

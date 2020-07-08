@@ -45,9 +45,9 @@ provides interoperability between `<button>` elements and those faux button elem
 [Check out the example on CodeSandbox](https://codesandbox.io/s/accessiblebutton-example-spjh2)
 
 ```jsx harmony
-import Button from '@accessible/button'
+import {Button, useA11yButton} from '@accessible/button'
 
-const ComponentA = () => (
+const Component = () => (
   // Adds `space` and `enter` keydown handlers to the div,
   // also adds role='button' and tabIndex='0', both
   // of which can be overridden by providing those
@@ -58,30 +58,57 @@ const ComponentA = () => (
   // <div role='button' tabindex='0'/>
 )
 
-const ComponentB = () => (
-  // Won't break real buttons
-  <Button>
-    <button onClick={console.log} />
-  </Button>
-)
-
-const MyButton = styled.button``
-
-const ComponentC = () => (
-  // Won't break real buttons, period.
-  <Button>
-    <MyButton onClick={console.log} />
-  </Button>
-)
+const WithHook = () => {
+  const ref = React.useRef(null)
+  const a11yProps = useA11yButton(ref, (event) => {
+    // This is your `onClick` handler
+    console.log('Clicked', event)
+  })
+  return <button {...a11yProps} ref={ref} />
+}
 ```
 
 ## API
 
-### Props
+### &lt;Button&gt;
+
+#### Props
 
 | Prop     | Type                 | Default     | Required? | Description                                                                                          |
 | -------- | -------------------- | ----------- | --------- | ---------------------------------------------------------------------------------------------------- |
 | children | `React.ReactElement` | `undefined` | Yes       | The component you want to turn into a button that handles focus and `space`, `enter` keydown events. |
+
+### useA11yButton(target, onClick)
+
+A React hook for adding a11y properties and button/role=button interop to elements.
+
+```jsx harmony
+const Button = () => {
+  const ref = React.useRef(null)
+  const a11yProps = useA11yButton(ref, (event) => {
+    // This is your `onClick` handler
+    console.log('Clicked', event)
+  })
+  return <div {...a11yProps} ref={ref} />
+}
+```
+
+#### Arguments
+
+| Argument | Type                                                       | Required? | Description                                                                                          |
+| -------- | ---------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------- |
+| target   | <code>React.RefObject&lt;T&gt; &#124; T &#124; null</code> | Yes       | A React ref or HTML element                                                                          |  |
+| children | `React.ReactElement`                                       | Yes       | The component you want to turn into a button that handles focus and `space`, `enter` keydown events. |
+
+#### Returns
+
+```ts
+{
+    readonly onClick: (event: React.MouseEvent<T, MouseEvent>) => void;
+    readonly role: "button";
+    readonly tabIndex: 0;
+}
+```
 
 ## LICENSE
 

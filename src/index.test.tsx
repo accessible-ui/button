@@ -1,102 +1,91 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* jest */
-import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
-import Button from './index'
+import * as React from 'react'
+import {render, fireEvent, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import {Button} from './index'
 
 describe('<Button>', () => {
   it(`should fire click event once for buttons on click`, () => {
     const cb = jest.fn()
-    const {getByTestId} = render(
+    render(
       <Button>
-        <button onClick={cb} data-testid="btn" />
+        <button onClick={cb} />
       </Button>
     )
     // mousedown
-    fireEvent.click(getByTestId('btn'))
+    fireEvent.click(screen.getByRole('button'))
     expect(cb).toBeCalledTimes(0)
-    fireEvent.mouseDown(getByTestId('btn'))
-    fireEvent.click(getByTestId('btn'))
+    fireEvent.mouseDown(screen.getByRole('button'))
+    fireEvent.click(screen.getByRole('button'))
     expect(cb).toBeCalledTimes(1)
     // touchstart
-    fireEvent.click(getByTestId('btn'))
+    fireEvent.click(screen.getByRole('button'))
     expect(cb).toBeCalledTimes(1) // should reset between clicks
-    fireEvent.touchStart(getByTestId('btn'))
-    fireEvent.click(getByTestId('btn'))
+    fireEvent.touchStart(screen.getByRole('button'))
+    fireEvent.click(screen.getByRole('button'))
     expect(cb).toBeCalledTimes(2)
   })
 
   it(`should fire click event once for buttons on space`, () => {
     const cb = jest.fn()
-    const {getByTestId} = render(
+    render(
       <Button>
-        <button onClick={cb} data-testid="btn" />
+        <button onClick={cb} />
       </Button>
     )
 
-    fireEvent.keyDown(getByTestId('btn'), {which: 32})
+    fireEvent.keyDown(screen.getByRole('button'), {key: ' '})
     expect(cb).toBeCalledTimes(1)
   })
 
   it(`should fire click event once for buttons on enter`, () => {
     const cb = jest.fn()
-    const {getByTestId} = render(
+    render(
       <Button>
-        <button onClick={cb} data-testid="btn" />
+        <button onClick={cb} />
       </Button>
     )
 
-    fireEvent.keyDown(getByTestId('btn'), {which: 13})
+    fireEvent.keyDown(screen.getByRole('button'), {key: 'Enter'})
     expect(cb).toBeCalledTimes(1)
   })
 
   it(`should fire click event once for divs on click`, () => {
     const cb = jest.fn()
-    const {getByTestId} = render(
+    render(
       <Button>
-        <div onClick={cb} data-testid="btn" />
+        <div onClick={cb} />
       </Button>
     )
 
-    fireEvent.click(getByTestId('btn'))
+    fireEvent.click(screen.getByRole('button'))
     expect(cb).toBeCalledTimes(0)
-    fireEvent.mouseDown(getByTestId('btn'))
-    fireEvent.click(getByTestId('btn'))
+    userEvent.click(screen.getByRole('button'))
     expect(cb).toBeCalledTimes(1)
   })
 
   it(`should fire click event once for divs on space`, () => {
     const cb = jest.fn()
-    const {getByTestId} = render(
+    render(
       <Button>
-        <div onClick={cb} data-testid="btn" />
+        <div onClick={cb} />
       </Button>
     )
 
-    fireEvent.keyDown(getByTestId('btn'), {which: 32})
+    fireEvent.keyDown(screen.getByRole('button'), {key: ' '})
     expect(cb).toBeCalledTimes(1)
   })
 
   it(`should fire click event once for divs on enter`, () => {
     const cb = jest.fn()
-    const {getByTestId} = render(
+    render(
       <Button>
-        <div onClick={cb} data-testid="btn" />
+        <div onClick={cb} />
       </Button>
     )
 
-    fireEvent.keyDown(getByTestId('btn'), {which: 13})
-    expect(cb).toBeCalledTimes(1)
-  })
-
-  it(`should fire user-defined onMouseDown`, () => {
-    const cb = jest.fn()
-    const {getByTestId} = render(
-      <Button>
-        <div onMouseDown={cb} data-testid="btn" />
-      </Button>
-    )
-
-    fireEvent.mouseDown(getByTestId('btn'))
+    fireEvent.keyDown(screen.getByRole('button'), {key: 'Enter'})
     expect(cb).toBeCalledTimes(1)
   })
 
@@ -114,7 +103,7 @@ describe('<Button>', () => {
     expect(
       render(
         <Button>
-          <div role="menu" tabIndex={-1} />
+          <div role='menu' tabIndex={-1} />
         </Button>
       ).asFragment()
     ).toMatchSnapshot('role=menu, tabIndex=-1')

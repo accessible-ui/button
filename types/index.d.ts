@@ -1,16 +1,15 @@
 import * as React from 'react'
-export declare function useA11yButton<T extends Window>(
-  target: Window | null,
-  onClick: (event: WindowEventMap['click']) => any
-): void
-export declare function useA11yButton<T extends Document>(
-  target: Document | null,
-  onClick: (event: DocumentEventMap['click']) => any
-): void
-export declare function useA11yButton<T extends HTMLElement>(
+export declare function useA11yButton<
+  T extends HTMLElement,
+  E extends React.MouseEvent<T, MouseEvent>
+>(
   target: React.RefObject<T> | T | null,
-  onClick: (event: HTMLElementEventMap['click']) => any
-): void
+  onClick: (event: E) => any
+): {
+  readonly onClick: (event: E) => void
+  readonly role: 'button'
+  readonly tabIndex: 0
+}
 export declare const Button: {
   ({children}: ButtonProps): React.ReactElement<
     any,

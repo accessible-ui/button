@@ -1,12 +1,8 @@
 import * as React from 'react'
-export declare function useA11yButton<
-  T extends HTMLElement,
-  E extends React.MouseEvent<T, MouseEvent>
->(
+export declare function useA11yButton<T extends HTMLElement>(
   target: React.RefObject<T> | T | null,
-  onClick: (event: E) => any
+  onClick: (event: MouseEvent) => any
 ): {
-  readonly onClick: (event: E) => void
   readonly role: 'button'
   readonly tabIndex: 0
 }

@@ -3,14 +3,19 @@ import useKey from '@accessible/use-key'
 import useEvent from '@react-hook/event'
 import useMergedRef from '@react-hook/merged-ref'
 
-export function useA11yButton<
-  T extends HTMLElement,
-  E extends React.MouseEvent<T, MouseEvent>
->(target: React.RefObject<T> | T | null, onClick: (event: E) => any) {
+export function useA11yButton<T extends HTMLElement>(
+  target: React.RefObject<T> | T | null,
+  onClick: (event: MouseEvent) => any
+) {
   const clickedMouse = React.useRef(false)
   const setClickedMouse = () => (clickedMouse.current = true)
   useEvent(target, 'touchstart', setClickedMouse)
   useEvent(target, 'mousedown', setClickedMouse)
+  useEvent(target, 'click', (event) => {
+    // Only fire onClick if the keyboard was not used to initiate the click
+    clickedMouse.current && onClick(event)
+    clickedMouse.current = false
+  })
   // @ts-expect-error
   useKey(target, {
     Enter: onClick,
@@ -18,11 +23,6 @@ export function useA11yButton<
   })
 
   return {
-    onClick: (event: E) => {
-      // Only fire onClick if the keyboard was not used to initiate the click
-      clickedMouse.current && onClick(event)
-      clickedMouse.current = false
-    },
     role: 'button',
     tabIndex: 0,
   } as const
@@ -31,10 +31,10 @@ export function useA11yButton<
 export const Button = ({children}: ButtonProps) => {
   const ref = React.useRef(null)
   const {props} = children
-  const {onClick, role, tabIndex} = useA11yButton(ref, props.onClick)
+  const {role, tabIndex} = useA11yButton(ref, props.onClick)
 
   return React.cloneElement(children, {
-    onClick,
+    onClick: undefined,
     role: props.hasOwnProperty('role') ? props.role : role,
     tabIndex: props.hasOwnProperty('tabIndex') ? props.tabIndex : tabIndex,
     // @ts-expect-error

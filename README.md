@@ -104,7 +104,6 @@ const Button = () => {
 
 ```ts
 {
-    readonly onClick: (event: React.MouseEvent<T, MouseEvent>) => void;
     readonly role: "button";
     readonly tabIndex: 0;
 }
